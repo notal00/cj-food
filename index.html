@@ -4,170 +4,237 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>一起吃饭吧</title>
+  <title>一起吃饭吧 · 首尔篇</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Serif+Display:ital@0;1&family=Caveat:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500&family=Caveat:wght@400;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── CSS Variables ── */
     :root {
-      --cream: #faf6f0;
-      --cream-dark: #f2ebe0;
-      --cream-border: #e8ddd0;
-      --brown-light: #c9a98a;
-      --brown: #8b6651;
-      --brown-dark: #5a3e2b;
-      --cherry: #c0392b;
-      --cherry-light: #f9e8e6;
-      --cherry-mid: #e8aea6;
-      --pink: #e8829a;
-      --pink-light: #fdf0f3;
-      --pink-mid: #f0b8c8;
-      --text-main: #3d2b1f;
-      --text-sub: #7a5c4a;
-      --text-muted: #a68c7c;
-      --shadow-warm: rgba(139, 102, 81, 0.12);
-      --shadow-deeper: rgba(90, 62, 43, 0.18);
-      --tape: rgba(250, 240, 220, 0.85);
+      --bg:           #fdf8f6;
+      --bg-card:      #ffffff;
+      --red:          #c0392b;
+      --red-light:    #fdf0ee;
+      --red-mid:      #e8aea6;
+      --pink:         #e8829a;
+      --pink-light:   #fdf0f3;
+      --pink-mid:     #f5c0ce;
+      --tape-a:       rgba(232, 130, 154, 0.50);
+      --tape-b:       rgba(192,  57,  43, 0.28);
+      --tape-c:       rgba(245, 192, 206, 0.60);
+      --text:         #281818;
+      --text-sub:     #664040;
+      --text-muted:   #b08080;
+      --border:       #eedede;
+      --shadow-card:  rgba(192, 57, 43, 0.08);
+      --shadow-photo: rgba(80, 20, 20, 0.20);
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --cream: #1e1610;
-        --cream-dark: #261c14;
-        --cream-border: #3d2e22;
-        --brown-light: #7a5c4a;
-        --brown: #c9a98a;
-        --brown-dark: #e8d5c0;
-        --cherry-light: #2a1210;
-        --cherry-mid: #7a3028;
-        --pink-light: #1e1015;
-        --pink-mid: #7a3850;
-        --text-main: #f0e6d8;
-        --text-sub: #c9a98a;
-        --text-muted: #8b6651;
-        --shadow-warm: rgba(0, 0, 0, 0.3);
-        --shadow-deeper: rgba(0, 0, 0, 0.45);
-        --tape: rgba(50, 38, 28, 0.85);
+        --bg:           #181010;
+        --bg-card:      #201414;
+        --red-light:    #281010;
+        --red-mid:      #7a2820;
+        --pink-light:   #1e1015;
+        --pink-mid:     #7a3050;
+        --tape-a:       rgba(232, 130, 154, 0.28);
+        --tape-b:       rgba(192,  57,  43, 0.20);
+        --tape-c:       rgba(245, 192, 206, 0.22);
+        --text:         #f5e5e5;
+        --text-sub:     #d4a0a0;
+        --text-muted:   #8a5858;
+        --border:       #3a2020;
+        --shadow-card:  rgba(0,0,0,0.35);
+        --shadow-photo: rgba(0,0,0,0.55);
       }
     }
 
-    /* ── Reset & Base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background-color: var(--cream);
-      color: var(--text-main);
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Noto Sans SC', sans-serif;
       font-weight: 300;
-      min-height: 100vh;
-      /* subtle paper grain */
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
     }
 
-    /* ── Header ── */
+    /* ══ HEADER ══ */
     .site-header {
+      background: var(--bg-card);
+      border-bottom: 1.5px solid var(--border);
+      padding: 2.8rem 1.5rem 2rem;
+      text-align: center;
       position: relative;
-      width: 100%;
-      max-height: 60vh;
       overflow: hidden;
     }
 
-    .header-img {
-      width: 100%;
-      height: 100%;
-      max-height: 60vh;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-
-    .header-overlay {
+    /* dot grid background */
+    .site-header::before {
+      content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(250, 246, 240, 0.0) 0%,
-        rgba(250, 246, 240, 0.0) 40%,
-        rgba(250, 246, 240, 0.7) 75%,
-        var(--cream) 100%
-      );
+      background-image: radial-gradient(circle, var(--pink-mid) 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.20;
+      pointer-events: none;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .header-overlay {
-        background: linear-gradient(
-          to bottom,
-          rgba(30, 22, 16, 0.0) 0%,
-          rgba(30, 22, 16, 0.0) 40%,
-          rgba(30, 22, 16, 0.7) 75%,
-          var(--cream) 100%
-        );
-      }
-    }
+    .header-inner { position: relative; }
 
-    .header-text {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      text-align: center;
-      padding: 1.5rem 1rem 1.8rem;
+    .with-coupsjeong {
+      font-family: 'Caveat', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--pink);
+      letter-spacing: 0.04em;
+      display: block;
+      margin-bottom: 0.2rem;
+      transform: rotate(-1.8deg);
     }
 
     .site-title {
       font-family: 'DM Serif Display', 'Noto Serif SC', serif;
-      font-size: clamp(2.2rem, 8vw, 3.5rem);
-      font-weight: 700;
-      color: var(--text-main);
-      letter-spacing: 0.05em;
-      line-height: 1.1;
+      font-size: clamp(2.6rem, 11vw, 4rem);
+      color: var(--text);
+      line-height: 1.0;
+      letter-spacing: 0.02em;
+      position: relative;
+      display: inline-block;
+    }
+
+    /* red underline accent */
+    .site-title::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 5%;
+      width: 90%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--red), var(--pink), transparent);
+      border-radius: 2px;
     }
 
     .site-subtitle {
-      font-family: 'Noto Sans SC', sans-serif;
-      font-size: clamp(0.75rem, 2.5vw, 0.9rem);
-      font-weight: 300;
-      color: var(--text-sub);
-      letter-spacing: 0.2em;
-      margin-top: 0.4rem;
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
     }
 
-    /* ── Main Container ── */
+    /* ══ CREDITS ══ */
+    .credits-bar {
+      background: var(--red-light);
+      border-bottom: 1px solid var(--red-mid);
+      padding: 0.5rem 1rem;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-align: center;
+      line-height: 1.9;
+    }
+
+    /* ══ MAIN ══ */
     main {
-      max-width: 480px;
+      max-width: 460px;
       margin: 0 auto;
-      padding: 1.5rem 1rem 4rem;
+      padding: 2rem 1rem 5rem;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.8rem;
     }
 
-    /* ── Restaurant Card ── */
+    /* ══ CARD ══ */
     .card {
-      background: var(--cream-dark);
+      background: var(--bg-card);
+      border-radius: 16px;
+      border: 1.5px solid var(--border);
+      overflow: visible;          /* allow tape corners to bleed out */
+      box-shadow: 0 2px 14px var(--shadow-card);
+    }
+
+    /* clip inner content, but keep overflow visible for pseudo */
+    .card-inner {
       border-radius: 16px;
       overflow: hidden;
-      box-shadow:
-        0 2px 8px var(--shadow-warm),
-        0 6px 24px var(--shadow-deeper);
-      position: relative;
     }
 
-    /* ── Photo Stack ── */
+    /* ── Photo block ── */
+    .photo-block {
+      padding: 1.1rem 1.1rem 0;
+    }
+
+    .photo-label {
+      font-family: 'Caveat', cursive;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+      padding-left: 0.15rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .photo-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 9px;
+      background: var(--tape-b);
+      border-radius: 2px;
+      transform: rotate(-2.5deg);
+      flex-shrink: 0;
+    }
+
+    /* polaroid frame */
+    .photo-frame {
+      position: relative;
+      background: #fff;
+      padding: 6px 6px 0;
+      box-shadow: 2px 4px 14px var(--shadow-photo);
+      border-radius: 3px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .photo-frame { background: #281818; }
+    }
+
+    /* tape corners */
+    .tc {
+      position: absolute;
+      height: 11px;
+      border-radius: 2px;
+      z-index: 2;
+    }
+    .tc-tl {
+      width: 34px;
+      top: -5px; left: 12px;
+      background: var(--tape-a);
+      transform: rotate(-2.5deg);
+    }
+    .tc-tr {
+      width: 28px;
+      top: -4px; right: 16px;
+      background: var(--tape-c);
+      transform: rotate(2deg);
+    }
+
+    /* photo stack */
     .photo-stack {
       position: relative;
       width: 100%;
       overflow: hidden;
+      border-radius: 1px;
       cursor: pointer;
       user-select: none;
+      -webkit-user-select: none;
     }
-
     .photo-stack[data-ratio="5-4"] { aspect-ratio: 5/4; }
     .photo-stack[data-ratio="3-4"] { aspect-ratio: 3/4; }
-    .photo-stack[data-ratio="4-3"] { aspect-ratio: 4/3; }
 
     .photo-stack img {
       position: absolute;
@@ -178,654 +245,467 @@
       opacity: 0;
       transition: opacity 0.4s ease;
     }
-
     .photo-stack img.active { opacity: 1; }
 
-    .photo-stack .tap-hint {
+    .tap-hint {
       position: absolute;
-      bottom: 10px;
-      right: 10px;
-      background: rgba(250, 246, 240, 0.75);
+      bottom: 9px; right: 9px;
+      font-size: 0.58rem;
+      color: rgba(255,255,255,0.9);
+      background: rgba(40,10,10,0.38);
       backdrop-filter: blur(4px);
+      padding: 2px 9px;
       border-radius: 20px;
-      padding: 3px 10px;
-      font-size: 0.65rem;
-      color: var(--text-sub);
-      letter-spacing: 0.05em;
       pointer-events: none;
+      letter-spacing: 0.04em;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .photo-stack .tap-hint {
-        background: rgba(30, 22, 16, 0.75);
-      }
-    }
-
-    /* date badge on photo */
-    .photo-date {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--tape);
-      backdrop-filter: blur(4px);
-      padding: 3px 10px;
-      border-radius: 4px;
-      font-family: 'Caveat', cursive;
-      font-size: 0.8rem;
+    /* note inside polaroid bottom white strip */
+    .photo-note {
+      padding: 0.52rem 0.3rem 0.6rem;
+      font-size: 0.74rem;
       color: var(--text-sub);
-      letter-spacing: 0.05em;
-      pointer-events: none;
-      transform: rotate(-1deg);
+      line-height: 1.65;
+      font-weight: 400;
     }
 
-    /* placeholder when no image */
-    .photo-placeholder {
-      width: 100%;
-      aspect-ratio: 3/4;
-      background: var(--cream-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .photo-note .note-who {
+      font-size: 0.6rem;
       color: var(--text-muted);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-    }
-
-    /* ── Post Note ── */
-    .post-note-wrap {
-      padding: 0.75rem 1rem 0;
-    }
-
-    .post-note {
-      border-radius: 10px;
-      padding: 0.65rem 0.9rem;
-      font-family: 'Caveat', cursive;
-      font-size: 1rem;
-      line-height: 1.55;
-      position: relative;
-    }
-
-    .post-note::before {
-      content: '';
-      position: absolute;
-      top: -6px;
-      left: 18px;
-      width: 28px;
-      height: 10px;
-      background: var(--tape);
-      border-radius: 2px;
-      transform: rotate(-1.5deg);
-    }
-
-    .post-note.koo {
-      background: var(--cherry-light);
-      color: var(--cherry);
-      border-left: 3px solid var(--cherry-mid);
-    }
-
-    .post-note.jing {
-      background: var(--pink-light);
-      color: var(--pink);
-      border-left: 3px solid var(--pink-mid);
-    }
-
-    .post-note .note-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      opacity: 0.7;
-      margin-bottom: 0.2rem;
-      font-family: 'Noto Sans SC', sans-serif;
-    }
-
-    /* ── Credits ── */
-    .credits {
-      padding: 0.6rem 1rem 0;
-      font-size: 0.62rem;
-      color: var(--text-muted);
-      letter-spacing: 0.06em;
-      line-height: 1.7;
-      border-top: none;
+      letter-spacing: 0.14em;
+      display: block;
+      margin-bottom: 0.1rem;
+      text-transform: uppercase;
     }
 
     /* ── Shop Info ── */
     .shop-info {
-      padding: 0.9rem 1rem 1.1rem;
+      padding: 0.95rem 1.1rem 1.1rem;
+    }
+
+    .card.text-only .shop-info {
+      padding-top: 1.2rem;
     }
 
     .shop-name-kr {
       font-family: 'Noto Serif SC', serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text-main);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
       line-height: 1.3;
     }
 
     .shop-name-en {
-      font-size: 0.72rem;
+      font-size: 0.66rem;
       color: var(--text-muted);
-      letter-spacing: 0.08em;
-      margin-top: 0.15rem;
+      letter-spacing: 0.1em;
+      margin-top: 0.1rem;
     }
 
-    .shop-divider {
+    .divider {
       height: 1px;
-      background: var(--cream-border);
-      margin: 0.75rem 0;
+      background: var(--border);
+      margin: 0.65rem 0;
     }
 
     .info-row {
       display: flex;
-      gap: 0.6rem;
+      gap: 0.52rem;
       align-items: flex-start;
-      margin-bottom: 0.5rem;
-      font-size: 0.78rem;
+      margin-bottom: 0.46rem;
+      font-size: 0.75rem;
       color: var(--text-sub);
-      line-height: 1.55;
+      line-height: 1.6;
     }
-
     .info-row:last-child { margin-bottom: 0; }
 
-    .info-icon {
-      flex-shrink: 0;
-      width: 14px;
-      height: 14px;
-      margin-top: 2px;
-      color: var(--brown-light);
-    }
-
-    .nav-link {
-      color: var(--cherry);
-      text-decoration: none;
-      border-bottom: 1px dashed var(--cherry-mid);
-      transition: opacity 0.2s;
-      word-break: break-all;
-    }
-
-    .nav-link:hover { opacity: 0.7; }
-
-    @media (prefers-color-scheme: dark) {
-      .nav-link { color: #e87060; border-bottom-color: #7a3028; }
-    }
-
-    .hours-grid {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.1rem 0.5rem;
-      font-size: 0.75rem;
-    }
-
-    .hours-label { color: var(--text-muted); }
-    .hours-val { color: var(--text-sub); }
-
-    .note-text {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-
-    /* ── Section Divider ── */
-    .section-label {
-      text-align: center;
-      font-family: 'Caveat', cursive;
-      font-size: 1rem;
-      color: var(--text-muted);
-      letter-spacing: 0.15em;
-      padding: 0.5rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .section-label::before,
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--cream-border);
-    }
-
-    /* ── SVG Icons ── */
     svg.icon {
-      width: 14px;
-      height: 14px;
-      stroke: currentColor;
+      width: 13px; height: 13px;
+      stroke: var(--red-mid);
       fill: none;
       stroke-width: 1.8;
       stroke-linecap: round;
       stroke-linejoin: round;
       flex-shrink: 0;
-      margin-top: 2px;
-      color: var(--brown-light);
+      margin-top: 3px;
+    }
+
+    a.nav-link {
+      color: var(--red);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--red-mid);
+      word-break: break-all;
+      transition: opacity 0.2s;
+    }
+    a.nav-link:hover { opacity: 0.65; }
+
+    .note-text {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .hours-block {
+      font-size: 0.75rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+    .hours-sub {
+      font-size: 0.67rem;
+      color: var(--text-muted);
     }
   </style>
 
 </head>
 <body>
 
-<!-- ── HEADER ── -->
-
 <header class="site-header">
-  <img class="header-img" src="header.jpeg" alt="一起吃饭吧" />
-  <div class="header-overlay"></div>
-  <div class="header-text">
+  <div class="header-inner">
+    <span class="with-coupsjeong">with coupsjeong ♡</span>
     <h1 class="site-title">一起吃饭吧</h1>
-    <p class="site-subtitle">爱与美食不可辜负</p>
+    <p class="site-subtitle">首尔篇</p>
   </div>
 </header>
 
+<div class="credits-bar">
+  翻译：澈汉的蜜糖小罐子 / CCcyms　·　整理：CCcyms
+</div>
+
 <main>
 
-  <!-- ════════════════════════════════════════
-       CARD 1 — 보물섬 논현
-       图：240906_1，5:4，酷发帖
-  ════════════════════════════════════════ -->
+  <!-- ══ CARD 1 — 보물섬 논현 ══ -->
 
   <article class="card">
-    <div class="photo-stack" data-ratio="5-4" onclick="cyclePhoto(this)">
-      <img src="240906_1.jpg" alt="보물섬 논현" class="active" />
-      <div class="photo-date">240906 要打台球吗</div>
-    </div>
-
-```
-<div class="post-note-wrap">
-  <div class="post-note koo">
-    <div class="note-label">酷</div>
-    要打台球吗
-  </div>
-</div>
-
-<div class="credits">
-  翻译：澈汉的蜜糖小罐子 / CCcyms &nbsp;·&nbsp; 整理：CCcyms &nbsp;·&nbsp; FANART：是真的子夜
-</div>
-
-<div class="shop-info">
-  <div class="shop-name-kr">보물섬 논현</div>
-  <div class="shop-divider"></div>
-
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    <span>서울 강남구 강남대로120길 40 논현동 181-5 101호</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-    <a class="nav-link" href="https://maps.google.com/?q=181-5+Nonhyeon-dong,+Gangnam+District,+Seoul" target="_blank" rel="noopener">181-5 Nonhyeon-dong, Gangnam District, Seoul</a>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    <span>周一至周日　16:00 – 01:30</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    <span class="note-text">凌晨 1 点接受最后点单。公休日不营业概率高。可以不预约，但店面不大，位置较少。生鱼片套餐按当季实时价格计算。</span>
-  </div>
-</div>
-```
-
-  </article>
-
-  <!-- ════════════════════════════════════════
-       CARD 2 — 소극적 한남본점
-       无图，酷发帖（WVS 241207）
-  ════════════════════════════════════════ -->
-
-  <article class="card">
-    <div class="post-note-wrap" style="padding-top:1rem;">
-      <div class="post-note koo">
-        <div class="note-label">酷 · 241207 WVS更新</div>
-        （待更新）
+    <div class="card-inner">
+      <div class="photo-block">
+        <div class="photo-label">240906 要打台球吗</div>
+        <div class="photo-frame">
+          <div class="tc tc-tl"></div>
+          <div class="tc tc-tr"></div>
+          <div class="photo-stack" data-ratio="5-4">
+            <img src="240906.jpg" alt="보물섬 논현" class="active" />
+          </div>
+        </div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name-kr">보물섬 논현</div>
+        <div class="divider"></div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>서울 강남구 강남대로120길 40 논현동 181-5 101호</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <a class="nav-link" href="https://maps.google.com/?q=181-5+Nonhyeon-dong,+Gangnam+District,+Seoul" target="_blank" rel="noopener">181-5 Nonhyeon-dong, Gangnam District, Seoul</a>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>周一至周日　16:00 – 01:30</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="note-text">凌晨 1 点接受最后点单。公休日不营业概率高。可以不预约，但店面不大，位置较少。生鱼片套餐按当季实时价格计算。</span>
+        </div>
       </div>
     </div>
-
-```
-<div class="credits">
-  翻译：澈汉的蜜糖小罐子 / CCcyms &nbsp;·&nbsp; 整理：CCcyms &nbsp;·&nbsp; FANART：是真的子夜
-</div>
-
-<div class="shop-info">
-  <div class="shop-name-kr">소극적 한남본점</div>
-  <div class="shop-name-en">so geukjeok hannam</div>
-  <div class="shop-divider"></div>
-
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    <span>서울 용산구 대사관로31길 7 2층</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-    <a class="nav-link" href="https://maps.google.com/?q=Daesaawan-ro+31-gil,+Yongsan+District,+Seoul+2F" target="_blank" rel="noopener">Daesaawan-ro 31-gil, Yongsan District, 2F</a>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
-    <span>02-6012-3312</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    <span>17:00 – 03:00</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    <span class="note-text">支持英语。需要预约，可通过 Naver 网站或电话预约。Naver 预约仅限晚上 8 点前，8 点后按先后顺序安排位置，需等位。8 点后 4 人以上包厢请提前询问。菜单根据当天食材供量调整。</span>
-  </div>
-</div>
-```
-
   </article>
 
-  <!-- ════════════════════════════════════════
-       CARD 3 — 스시모토이
-       图：241207_1（3:4），净发帖
-  ════════════════════════════════════════ -->
+  <!-- ══ CARD 2 — 소극적 한남본점（无图） ══ -->
 
-  <article class="card">
-    <div class="photo-stack" data-ratio="3-4" onclick="cyclePhoto(this)">
-      <img src="241207_1.jpg" alt="스시모토이" class="active" />
-      <div class="photo-date">241207 WVS更新</div>
+  <article class="card text-only">
+    <div class="card-inner">
+      <div class="shop-info">
+        <div class="shop-name-kr">소극적 한남본점</div>
+        <div class="shop-name-en">so geukjeok hannam</div>
+        <div class="divider"></div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>서울 용산구 대사관로31길 7 2층</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <a class="nav-link" href="https://maps.google.com/?q=Daesagwan-ro+31-gil,+Yongsan+District,+Seoul,+2F" target="_blank" rel="noopener">Daesaawan-ro 31-gil, Yongsan District, 2F</a>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
+          <span>02-6012-3312</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>17:00 – 03:00</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="note-text">支持英语。需预约，可通过 Naver 网站或电话预约。Naver 预约仅限晚上 8 点前，8 点后按先后顺序安排，需等位。8 点后 4 人以上包厢请提前询问。菜单根据当天食材供量调整。</span>
+        </div>
+      </div>
     </div>
-
-```
-<div class="post-note-wrap">
-  <div class="post-note jing">
-    <div class="note-label">净</div>
-    晚安克拉们～～～不要做梦睡个好觉
-    <br/><span style="font-size:0.85em;opacity:0.75;">（评论：哎呦 打错字了）</span>
-  </div>
-</div>
-
-<div class="credits">
-  翻译：澈汉的蜜糖小罐子 / CCcyms &nbsp;·&nbsp; 整理：CCcyms &nbsp;·&nbsp; FANART：是真的子夜
-</div>
-
-<div class="shop-info">
-  <div class="shop-name-kr">스시모토이</div>
-  <div class="shop-name-en">sushi motoi 狎鸥亭</div>
-  <div class="shop-divider"></div>
-
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    <span>서울 강남구 선릉로146길 27-10 2층 스시 모토이</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-    <a class="nav-link" href="https://maps.google.com/?q=Seoul+Gangnam+District+Cheongdam-dong+20-2+sushimotoi+2F" target="_blank" rel="noopener">Seoul, Gangnam District, Cheongdam-dong, 20-2 sushimotoi, 2F</a>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    <div>
-      周一至周日　12:00 – 22:00<br/>
-      <span style="font-size:0.9em;color:var(--text-muted);">休整：周中 14:30–18:30 / 周末 15:00–18:30</span><br/>
-      <span style="font-size:0.9em;color:var(--text-muted);">周末午餐：12:00–13:20 / 13:30–15:00</span>
-    </div>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    <span class="note-text">需提前预约（可通过 catch table 软件预约）。收取定价 50% 作定金，提前三天取消可退定金，三天以内不退。</span>
-  </div>
-</div>
-```
-
   </article>
 
-  <!-- ════════════════════════════════════════
-       CARD 4 — 벽제갈비 더청담
-       图：241125_1 + 241125_2（堆叠 3:4），酷发帖
-  ════════════════════════════════════════ -->
+  <!-- ══ CARD 3 — 스시모토이 ══ -->
 
   <article class="card">
-    <div class="photo-stack" data-ratio="3-4" onclick="cyclePhoto(this)">
-      <img src="241125_1.jpg" alt="벽제갈비 1" class="active" />
-      <img src="241125_2.jpg" alt="벽제갈비 2" />
-      <div class="photo-date">241125 WVS更新</div>
-      <div class="tap-hint">点击换图</div>
+    <div class="card-inner">
+      <div class="photo-block">
+        <div class="photo-label">241207 WVS更新</div>
+        <div class="photo-frame">
+          <div class="tc tc-tl"></div>
+          <div class="tc tc-tr"></div>
+          <div class="photo-stack" data-ratio="3-4">
+            <img src="241207.jpg" alt="스시모토이" class="active" />
+          </div>
+          <div class="photo-note">
+            <span class="note-who">净</span>
+            晚安克拉们～～～不要做梦睡个好觉<br/>
+            <span style="font-size:0.67rem;color:var(--text-muted);">评论：哎呦 打错字了</span>
+          </div>
+        </div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name-kr">스시모토이</div>
+        <div class="shop-name-en">sushi motoi 狎鸥亭</div>
+        <div class="divider"></div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>서울 강남구 선릉로146길 27-10 2층 스시 모토이</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <a class="nav-link" href="https://maps.google.com/?q=Seoul+Gangnam+District+Cheongdam-dong+20-2+sushimotoi+2F" target="_blank" rel="noopener">Seoul, Gangnam District, Cheongdam-dong, 20-2 sushimotoi, 2F</a>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="hours-block">
+            周一至周日　12:00 – 22:00<br/>
+            <span class="hours-sub">休整：周中 14:30–18:30 / 周末 15:00–18:30</span><br/>
+            <span class="hours-sub">周末午餐：12:00–13:20 / 13:30–15:00</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="note-text">需提前预约（可通过 catch table 软件预约）。收取定价 50% 作定金，提前三天取消可退，三天以内不退。</span>
+        </div>
+      </div>
     </div>
-
-```
-<div class="post-note-wrap">
-  <div class="post-note koo">
-    <div class="note-label">酷</div>
-    大赏歌手 尹净汉
-  </div>
-</div>
-
-<div class="credits">
-  翻译：澈汉的蜜糖小罐子 / CCcyms &nbsp;·&nbsp; 整理：CCcyms &nbsp;·&nbsp; FANART：是真的子夜
-</div>
-
-<div class="shop-info">
-  <div class="shop-name-kr">벽제갈비 더청담</div>
-  <div class="shop-name-en">Byeokje Galbi the Cheongdam</div>
-  <div class="shop-divider"></div>
-
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    <span>서울 강남구 도산대로81길 25 조은빌딩 1층</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-    <a class="nav-link" href="https://maps.google.com/?q=25+Dosan-daero+81-gil,+Cheongdam-dong,+Gangnam+District,+Seoul" target="_blank" rel="noopener">25 Dosan-daero 81-gil, Cheongdam-dong, Gangnam District, Seoul, 1F</a>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    <span>11:30 – 22:00　（21:15 last order）</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    <span class="note-text">私人包厢模式，需提前预约（可通过 catch table 软件预约，包厢数量少，建议提早安排）。定金每人 5 万韩元，提前三天取消退全部，提前两天退 50%，提前一天退 20%，当日取消或未到场不退。</span>
-  </div>
-</div>
-```
-
   </article>
 
-  <!-- ════════════════════════════════════════
-       CARD 5 — 꺼우이 조장집 한남본점
-       图：230327_1（3:4），无发帖文字
-  ════════════════════════════════════════ -->
+  <!-- ══ CARD 4 — 벽제갈비 더청담 ══ -->
 
   <article class="card">
-    <div class="photo-stack" data-ratio="3-4" onclick="cyclePhoto(this)">
-      <img src="230327_1.jpg" alt="꺼우이 조장집" class="active" />
-      <div class="photo-date">230327 IG更新</div>
+    <div class="card-inner">
+      <div class="photo-block">
+        <div class="photo-label">241125 WVS更新</div>
+        <div class="photo-frame">
+          <div class="tc tc-tl"></div>
+          <div class="tc tc-tr"></div>
+          <div class="photo-stack" data-ratio="3-4" onclick="cyclePhoto(this)">
+            <img src="241125_1.jpg" alt="벽제갈비 1" class="active" />
+            <img src="241125_2.jpg" alt="벽제갈비 2" />
+            <div class="tap-hint">点击换图</div>
+          </div>
+          <div class="photo-note">
+            <span class="note-who">酷</span>
+            大赏歌手 尹净汉
+          </div>
+        </div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name-kr">벽제갈비 더청담</div>
+        <div class="shop-name-en">Byeokje Galbi the Cheongdam</div>
+        <div class="divider"></div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>서울 강남구 도산대로81길 25 조은빌딩 1층</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <a class="nav-link" href="https://maps.google.com/?q=25+Dosan-daero+81-gil,+Cheongdam-dong,+Gangnam+District,+Seoul" target="_blank" rel="noopener">25 Dosan-daero 81-gil, Cheongdam-dong, Gangnam District, Seoul, 1F</a>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>11:30 – 22:00　（21:15 last order）</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="note-text">私人包厢模式，需提前预约（可通过 catch table 软件预约，包厢较少建议提早安排）。定金每人 5 万韩元，提前三天取消退全部，提前两天退 50%，提前一天退 20%，当日取消或未到场不退。</span>
+        </div>
+      </div>
     </div>
-
-```
-<div class="credits" style="padding-top:0.75rem;">
-  翻译：澈汉的蜜糖小罐子 / CCcyms &nbsp;·&nbsp; 整理：CCcyms &nbsp;·&nbsp; FANART：是真的子夜
-</div>
-
-<div class="shop-info">
-  <div class="shop-name-kr">꺼우이 조장집 한남본점</div>
-  <div class="shop-name-en">chojangzip 汉南洞本店</div>
-  <div class="shop-divider"></div>
-
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    <span>서울 용산구 한남동 618-1 대사관로34가길 2-8 1층</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-    <a class="nav-link" href="https://maps.google.com/?q=Seoul+Yongsan+District+Daesagwan-ro+34ga-gil+2-8+1F" target="_blank" rel="noopener">Seoul, Yongsan District, Daesagwan-ro 34ga-gil, 2-8 1F</a>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
-    <span>0507-1420-8833</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    <span class="note-text">目前无需提前预约，高峰期需等位。</span>
-  </div>
-</div>
-```
-
   </article>
 
-  <!-- ════════════════════════════════════════
-       CARD 6 — 진미평양냉면
-       无图
-  ════════════════════════════════════════ -->
+  <!-- ══ CARD 5 — 꺼우이 조장집（无图） ══ -->
 
-  <article class="card">
-    <div class="credits" style="padding-top:0.75rem;">
-      翻译：澈汉的蜜糖小罐子 / CCcyms &nbsp;·&nbsp; 整理：CCcyms &nbsp;·&nbsp; FANART：是真的子夜
+  <article class="card text-only">
+    <div class="card-inner">
+      <div class="shop-info">
+        <div class="shop-name-kr">꺼우이 조장집 한남본점</div>
+        <div class="shop-name-en">chojangzip 汉南洞本店</div>
+        <div class="divider"></div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>서울 용산구 한남동 618-1 대사관로34가길 2-8 1층</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <a class="nav-link" href="https://maps.google.com/?q=Seoul+Yongsan+District+Daesagwan-ro+34ga-gil+2-8+1F" target="_blank" rel="noopener">Seoul, Yongsan District, Daesagwan-ro 34ga-gil, 2-8 1F</a>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
+          <span>0507-1420-8833</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="note-text">目前无需提前预约，高峰期需等位。</span>
+        </div>
+      </div>
     </div>
-
-```
-<div class="shop-info">
-  <div class="shop-name-kr">진미평양냉면</div>
-  <div class="shop-name-en">Jinmi 平壤冷面</div>
-  <div class="shop-divider"></div>
-
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    <span>서울 강남구 학동로 305-3 논현동 115-10</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-    <a class="nav-link" href="https://maps.google.com/?q=305-3+Hakdong-ro,+Gangnam+District,+Seoul" target="_blank" rel="noopener">305-3 Hakdong-ro, Gangnam District, Seoul</a>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    <span>11:00 – 21:30　（21:10 last order）</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
-    <span>02-515-3469</span>
-  </div>
-</div>
-```
-
   </article>
 
-  <!-- ════════════════════════════════════════
-       CARD 7 — outback牛排馆江南店
-       无图
-  ════════════════════════════════════════ -->
+  <!-- ══ CARD 6 — 진미평양냉면 ══ -->
 
   <article class="card">
-    <div class="credits" style="padding-top:0.75rem;">
-      翻译：澈汉的蜜糖小罐子 / CCcyms &nbsp;·&nbsp; 整理：CCcyms &nbsp;·&nbsp; FANART：是真的子夜
+    <div class="card-inner">
+      <div class="photo-block">
+        <div class="photo-label">230327 IG更新</div>
+        <div class="photo-frame">
+          <div class="tc tc-tl"></div>
+          <div class="tc tc-tr"></div>
+          <div class="photo-stack" data-ratio="3-4">
+            <img src="230327.jpg" alt="진미평양냉면" class="active" />
+          </div>
+        </div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name-kr">진미평양냉면</div>
+        <div class="shop-name-en">Jinmi 平壤冷面</div>
+        <div class="divider"></div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>서울 강남구 학동로 305-3 논현동 115-10</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <a class="nav-link" href="https://maps.google.com/?q=305-3+Hakdong-ro,+Gangnam+District,+Seoul" target="_blank" rel="noopener">305-3 Hakdong-ro, Gangnam District, Seoul</a>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>11:00 – 21:30　（21:10 last order）</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
+          <span>02-515-3469</span>
+        </div>
+      </div>
     </div>
-
-```
-<div class="shop-info">
-  <div class="shop-name-kr">아웃백스테이크하우스 강남점</div>
-  <div class="shop-name-en">Outback Steakhouse 江南店</div>
-  <div class="shop-divider"></div>
-
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    <span>서울 강남구 강남대로 502 논현동 165 서희빌딩 2층</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-    <a class="nav-link" href="https://maps.google.com/?q=Seoul+502+Gangnam-daero+Nonhyeon-dong+Gangnam-gu+2F" target="_blank" rel="noopener">Seoul, 502 Gangnam-daero, Nonhyeon-dong, Gangnam-gu, 2F</a>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    <span>11:00 – 22:00　（21:00 last order）</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
-    <span>+82 507-305-4791</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    <span class="note-text">预约制，可通过 Naver 或电话预约，不接受当天预约，务必提前预约。</span>
-  </div>
-</div>
-```
-
   </article>
 
-  <!-- ════════════════════════════════════════
-       CARD 8 — 자연석돌구이
-       图：201025_1（3:4），酷发帖
-  ════════════════════════════════════════ -->
+  <!-- ══ CARD 7 — Outback（无图） ══ -->
 
-  <article class="card">
-    <div class="photo-stack" data-ratio="3-4" onclick="cyclePhoto(this)">
-      <img src="201025_1.jpg" alt="자연석돌구이" class="active" />
-      <div class="photo-date">201025 WVS更新</div>
+  <article class="card text-only">
+    <div class="card-inner">
+      <div class="shop-info">
+        <div class="shop-name-kr">아웃백스테이크하우스 강남점</div>
+        <div class="shop-name-en">Outback Steakhouse 江南店</div>
+        <div class="divider"></div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>서울 강남구 강남대로 502 논현동 165 서희빌딩 2층</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <a class="nav-link" href="https://maps.google.com/?q=Seoul+502+Gangnam-daero+Nonhyeon-dong+Gangnam-gu+2F" target="_blank" rel="noopener">Seoul, 502 Gangnam-daero, Nonhyeon-dong, Gangnam-gu, 2F</a>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>11:00 – 22:00　（21:00 last order）</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
+          <span>+82 507-305-4791</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="note-text">预约制，可通过 Naver 或电话预约，不接受当天预约，务必提前预约。</span>
+        </div>
+      </div>
     </div>
-
-```
-<div class="post-note-wrap">
-  <div class="post-note koo">
-    <div class="note-label">酷</div>
-    你叫什么名字 烤肉的技术 是艺术啊
-  </div>
-</div>
-
-<div class="credits">
-  翻译：澈汉的蜜糖小罐子 / CCcyms &nbsp;·&nbsp; 整理：CCcyms &nbsp;·&nbsp; FANART：是真的子夜
-</div>
-
-<div class="shop-info">
-  <div class="shop-name-kr">자연석돌구이</div>
-  <div class="shop-divider"></div>
-
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    <span>서울 강남구 언주로148길 9 (논현동 97-18)</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-    <a class="nav-link" href="https://maps.google.com/?q=Seoul+97-18+Nonhyeon-dong+Gangnam-gu+1F" target="_blank" rel="noopener">Seoul, 97-18 Nonhyeon-dong, Gangnam-gu, 1F</a>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    <span>11:00 – 00:00</span>
-  </div>
-</div>
-```
-
   </article>
 
-  <!-- ════════════════════════════════════════
-       CARD 9 — 새마을식당 삼성코엑스점
-       图：201012_1 + 201012_2（堆叠 3:4），净发帖
-  ════════════════════════════════════════ -->
+  <!-- ══ CARD 8 — 자연석돌구이 ══ -->
 
   <article class="card">
-    <div class="photo-stack" data-ratio="3-4" onclick="cyclePhoto(this)">
-      <img src="201012_1.jpg" alt="새마을식당 1" class="active" />
-      <img src="201012_2.jpg" alt="새마을식당 2" />
-      <div class="photo-date">201012 WVS更新</div>
-      <div class="tap-hint">点击换图</div>
+    <div class="card-inner">
+      <div class="photo-block">
+        <div class="photo-label">201025 WVS更新</div>
+        <div class="photo-frame">
+          <div class="tc tc-tl"></div>
+          <div class="tc tc-tr"></div>
+          <div class="photo-stack" data-ratio="3-4">
+            <img src="201025.jpg" alt="자연석돌구이" class="active" />
+          </div>
+          <div class="photo-note">
+            <span class="note-who">酷</span>
+            你叫什么名字 烤肉的技术 是艺术啊
+          </div>
+        </div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name-kr">자연석돌구이</div>
+        <div class="divider"></div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>서울 강남구 언주로148길 9 (논현동 97-18)</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <a class="nav-link" href="https://maps.google.com/?q=Seoul+97-18+Nonhyeon-dong+Gangnam-gu+1F" target="_blank" rel="noopener">Seoul, 97-18 Nonhyeon-dong, Gangnam-gu, 1F</a>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>11:00 – 00:00</span>
+        </div>
+      </div>
     </div>
+  </article>
 
-```
-<div class="post-note-wrap">
-  <div class="post-note jing">
-    <div class="note-label">净</div>
-    净汉尼给买的 给我烤好的美味肉肉
-  </div>
-</div>
+  <!-- ══ CARD 9 — 새마을식당 ══ -->
 
-<div class="credits">
-  翻译：澈汉的蜜糖小罐子 / CCcyms &nbsp;·&nbsp; 整理：CCcyms &nbsp;·&nbsp; FANART：是真的子夜
-</div>
-
-<div class="shop-info">
-  <div class="shop-name-kr">새마을식당 삼성코엑스점</div>
-  <div class="shop-name-en">newmaul饭店 三成 coex店</div>
-  <div class="shop-divider"></div>
-
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    <span>서울 강남구 삼성로104길 23 성지빌딩</span>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-    <a class="nav-link" href="https://maps.google.com/?q=Seoul+Gangnam-gu+Samseong-ro+104-gil+23+1F" target="_blank" rel="noopener">Seoul, Gangnam-gu, Samseong-ro 104-gil, 23, 1F</a>
-  </div>
-  <div class="info-row">
-    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    <span>24小时营业</span>
-  </div>
-</div>
-```
-
+  <article class="card">
+    <div class="card-inner">
+      <div class="photo-block">
+        <div class="photo-label">201012 WVS更新</div>
+        <div class="photo-frame">
+          <div class="tc tc-tl"></div>
+          <div class="tc tc-tr"></div>
+          <div class="photo-stack" data-ratio="3-4" onclick="cyclePhoto(this)">
+            <img src="201012_1.jpg" alt="새마을식당 1" class="active" />
+            <img src="201012_2.jpg" alt="새마을식당 2" />
+            <div class="tap-hint">点击换图</div>
+          </div>
+          <div class="photo-note">
+            <span class="note-who">酷</span>
+            净汉尼给买的 给我烤好的美味肉肉
+          </div>
+        </div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name-kr">새마을식당 삼성코엑스점</div>
+        <div class="shop-name-en">newmaul饭店 三成 coex店</div>
+        <div class="divider"></div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>서울 강남구 삼성로104길 23 성지빌딩</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <a class="nav-link" href="https://maps.google.com/?q=Seoul+Gangnam-gu+Samseong-ro+104-gil+23+1F" target="_blank" rel="noopener">Seoul, Gangnam-gu, Samseong-ro 104-gil, 23, 1F</a>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>24小时营业</span>
+        </div>
+      </div>
+    </div>
   </article>
 
 </main>
@@ -834,9 +714,9 @@
   function cyclePhoto(stack) {
     const imgs = stack.querySelectorAll('img');
     if (imgs.length <= 1) return;
-    const currentIndex = [...imgs].findIndex(img => img.classList.contains('active'));
-    imgs[currentIndex].classList.remove('active');
-    imgs[(currentIndex + 1) % imgs.length].classList.add('active');
+    const cur = [...imgs].findIndex(i => i.classList.contains('active'));
+    imgs[cur].classList.remove('active');
+    imgs[(cur + 1) % imgs.length].classList.add('active');
   }
 </script>
 
