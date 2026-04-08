@@ -7,7 +7,7 @@
   <title>一起吃饭吧 · 首尔篇</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500&family=Caveat:wght@400;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500&family=Caveat:wght@400;600;700&family=DM+Serif+Display:ital@0;1&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -69,7 +69,6 @@
       overflow: hidden;
     }
 
-    /* dot grid background */
     .site-header::before {
       content: '';
       position: absolute;
@@ -103,7 +102,6 @@
       display: inline-block;
     }
 
-    /* red underline accent */
     .site-title::after {
       content: '';
       position: absolute;
@@ -128,12 +126,17 @@
     .credits-bar {
       background: var(--red-light);
       border-bottom: 1px solid var(--red-mid);
-      padding: 0.5rem 1rem;
+      padding: 0.55rem 1rem;
       font-size: 0.6rem;
       color: var(--text-muted);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-align: center;
-      line-height: 1.9;
+      line-height: 2;
+    }
+
+    .credits-bar span {
+      display: inline-block;
+      white-space: nowrap;
     }
 
     /* ══ MAIN ══ */
@@ -151,11 +154,9 @@
       background: var(--bg-card);
       border-radius: 16px;
       border: 1.5px solid var(--border);
-      overflow: visible;          /* allow tape corners to bleed out */
       box-shadow: 0 2px 14px var(--shadow-card);
     }
 
-    /* clip inner content, but keep overflow visible for pseudo */
     .card-inner {
       border-radius: 16px;
       overflow: hidden;
@@ -166,10 +167,10 @@
       padding: 1.1rem 1.1rem 0;
     }
 
+    /* handwritten label — Ma Shan Zheng for Chinese, Caveat for Latin */
     .photo-label {
-      font-family: 'Caveat', cursive;
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-family: 'Ma Shan Zheng', 'Caveat', cursive;
+      font-size: 0.95rem;
       color: var(--text-sub);
       letter-spacing: 0.04em;
       margin-bottom: 0.5rem;
@@ -260,7 +261,7 @@
       letter-spacing: 0.04em;
     }
 
-    /* note inside polaroid bottom white strip */
+    /* note inside polaroid bottom */
     .photo-note {
       padding: 0.52rem 0.3rem 0.6rem;
       font-size: 0.74rem;
@@ -275,7 +276,6 @@
       letter-spacing: 0.14em;
       display: block;
       margin-bottom: 0.1rem;
-      text-transform: uppercase;
     }
 
     /* ── Shop Info ── */
@@ -287,13 +287,23 @@
       padding-top: 1.2rem;
     }
 
+    /* shop name is now a map link */
+    .shop-name-link {
+      text-decoration: none;
+      display: inline-block;
+    }
+
     .shop-name-kr {
       font-family: 'Noto Serif SC', serif;
       font-size: 1rem;
       font-weight: 700;
-      color: var(--text);
+      color: var(--red);
       line-height: 1.3;
+      border-bottom: 1.5px solid var(--red-mid);
+      display: inline;
+      transition: opacity 0.2s;
     }
+    .shop-name-link:hover .shop-name-kr { opacity: 0.65; }
 
     .shop-name-en {
       font-size: 0.66rem;
@@ -330,14 +340,12 @@
       margin-top: 3px;
     }
 
-    a.nav-link {
-      color: var(--red);
-      text-decoration: none;
-      border-bottom: 1px dashed var(--red-mid);
+    /* nav address plain text (no longer a link) */
+    .nav-addr {
+      color: var(--text-muted);
+      font-size: 0.72rem;
       word-break: break-all;
-      transition: opacity 0.2s;
     }
-    a.nav-link:hover { opacity: 0.65; }
 
     .note-text {
       font-size: 0.7rem;
@@ -368,12 +376,13 @@
 </header>
 
 <div class="credits-bar">
-  翻译：澈汉的蜜糖小罐子 / CCcyms　·　整理：CCcyms　·　网页制作：notal00
+  <span>翻译：澈汉的蜜糖小罐子 / CCcyms　·　整理：CCcyms</span><br/>
+  <span>网页制作：notal</span>
 </div>
 
 <main>
 
-  <!-- ══ CARD 1 — 보물섬 논현 ══ -->
+  <!-- ══ CARD 1 — 보물섬 ══ -->
 
   <article class="card">
     <div class="card-inner">
@@ -383,12 +392,15 @@
           <div class="tc tc-tl"></div>
           <div class="tc tc-tr"></div>
           <div class="photo-stack" data-ratio="5-4">
-            <img src="240906.jpg" alt="보물섬 논현" class="active" />
+            <img src="240906.jpg" alt="보물섬" class="active" />
           </div>
         </div>
       </div>
       <div class="shop-info">
-        <div class="shop-name-kr">보물섬</div>
+        <a class="shop-name-link" href="https://maps.google.com/?q=40+Gangnam-daero+120-gil,+Gangnam+District,+Seoul" target="_blank" rel="noopener">
+          <div class="shop-name-kr">보물섬</div>
+        </a>
+        <div class="shop-name-en">Bomulseom</div>
         <div class="divider"></div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -396,15 +408,19 @@
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          <a class="nav-link" href="https://maps.google.com/?q=40+Gangnan-daero+120-gil,+Gangnam+District,+Seoul,+Korea" target="_blank" rel="noopener">40 Gangnam-daero 120-gil, Gangnam District, Seoul, Korea</a>
+          <span class="nav-addr">40 Gangnam-daero 120-gil, Gangnam District, Seoul</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
+          <span>+82 2-540-3563</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>周一至周日　16:00 – 01:30</span>
+          <span>周一至周日　16:00 – 01:30　（01:00 最后点单）</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span class="note-text">凌晨 1 点接受最后点单。公休日不营业概率高。可以不预约，但店面不大，位置较少。生鱼片套餐按当季实时价格计算。</span>
+          <span class="note-text">公休日不营业概率高。可以不预约，但店面不大，位置较少。生鱼片套餐按当季实时价格计算。</span>
         </div>
       </div>
     </div>
@@ -415,8 +431,10 @@
   <article class="card text-only">
     <div class="card-inner">
       <div class="shop-info">
-        <div class="shop-name-kr">소극적 한남본점</div>
-        <div class="shop-name-en">so geukjeok hannam</div>
+        <a class="shop-name-link" href="https://maps.google.com/?q=Seoul,+Yongsan+District,+Daesagwan-ro+31-gil,+7+2F" target="_blank" rel="noopener">
+          <div class="shop-name-kr">소극적 한남본점</div>
+        </a>
+        <div class="shop-name-en">So Geukjeok 汉南本店</div>
         <div class="divider"></div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -424,11 +442,11 @@
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          <a class="nav-link" href="https://maps.google.com/?q=Daesagwan-ro+31-gil,+Yongsan+District,+Seoul,+2F" target="_blank" rel="noopener">Daesaawan-ro 31-gil, Yongsan District, 2F</a>
+          <span class="nav-addr">Seoul, Yongsan District, Daesagwan-ro 31-gil, 7 2F</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
-          <span>02-6012-3312</span>
+          <span>+82 2-6012-3312</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -455,23 +473,29 @@
             <img src="241207.jpg" alt="스시모토이" class="active" />
           </div>
           <div class="photo-note">
-            <span class="note-who">净</span>
+            <span class="note-who">净汉</span>
             晚安克拉们～～～不要做梦睡个好觉<br/>
             <span style="font-size:0.67rem;color:var(--text-muted);">评论：哎呦 打错字了</span>
           </div>
         </div>
       </div>
       <div class="shop-info">
-        <div class="shop-name-kr">스시모토이</div>
-        <div class="shop-name-en">sushi motoi 狎鸥亭</div>
+        <a class="shop-name-link" href="https://maps.google.com/?q=27-10+Seolleung-ro+146-gil,+Gangnam+District,+Seoul,+2F" target="_blank" rel="noopener">
+          <div class="shop-name-kr">스시모토이</div>
+        </a>
+        <div class="shop-name-en">Sushi Motoi</div>
         <div class="divider"></div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>서울 강남구 선릉로146길 27-10 2층 스시 모토이</span>
+          <span>서울특별시 강남구 선릉로146길 27-10</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          <a class="nav-link" href="https://maps.google.com/?q=Seoul+Gangnam+District+Cheongdam-dong+20-2+sushimotoi+2F" target="_blank" rel="noopener">Seoul, Gangnam District, Cheongdam-dong, 20-2 sushimotoi, 2F</a>
+          <span class="nav-addr">27-10 Seolleung-ro 146-gil, Gangnam District, Seoul, 2F</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
+          <span>+82 10-5556-5401</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -489,7 +513,7 @@
     </div>
   </article>
 
-  <!-- ══ CARD 4 — 벽제갈비 더청담 ══ -->
+  <!-- ══ CARD 4 — 벽제갈비 더 청담 ══ -->
 
   <article class="card">
     <div class="card-inner">
@@ -504,26 +528,32 @@
             <div class="tap-hint">点击换图</div>
           </div>
           <div class="photo-note">
-            <span class="note-who">酷</span>
+            <span class="note-who">胜澈</span>
             大赏歌手 尹净汉
           </div>
         </div>
       </div>
       <div class="shop-info">
-        <div class="shop-name-kr">벽제갈비 더청담</div>
+        <a class="shop-name-link" href="https://maps.google.com/?q=25+Dosan-daero+81-gil,+Cheongdam-dong,+Gangnam+District,+Seoul,+1F" target="_blank" rel="noopener">
+          <div class="shop-name-kr">벽제갈비 더 청담</div>
+        </a>
         <div class="shop-name-en">Byeokje Galbi the Cheongdam</div>
         <div class="divider"></div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>서울 강남구 도산대로81길 25 조은빌딩 1층</span>
+          <span>서울특별시 강남구 청담동 도산대로81길 25</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          <a class="nav-link" href="https://maps.google.com/?q=25+Dosan-daero+81-gil,+Cheongdam-dong,+Gangnam+District,+Seoul" target="_blank" rel="noopener">25 Dosan-daero 81-gil, Cheongdam-dong, Gangnam District, Seoul, 1F</a>
+          <span class="nav-addr">25 Dosan-daero 81-gil, Cheongdam-dong, Gangnam District, Seoul, 1F</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
+          <span>+82 2-512-9593</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>11:30 – 22:00　（21:15 last order）</span>
+          <span>11:30 – 22:00　（21:15 最后点单）</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -533,29 +563,31 @@
     </div>
   </article>
 
-  <!-- ══ CARD 5 — 꺼우이 조장집（无图） ══ -->
+  <!-- ══ CARD 5 — 꺼꾸잽이 초장집 논현점（无图） ══ -->
 
   <article class="card text-only">
     <div class="card-inner">
       <div class="shop-info">
-        <div class="shop-name-kr">꺼우이 조장집 한남본점</div>
-        <div class="shop-name-en">chojangzip 汉南洞本店</div>
+        <a class="shop-name-link" href="https://maps.google.com/?q=56+Hakdong-ro+2-gil,+Gangnam+District,+Seoul" target="_blank" rel="noopener">
+          <div class="shop-name-kr">꺼꾸잽이 초장집 논현점</div>
+        </a>
+        <div class="shop-name-en">Chojangzip 论岘店</div>
         <div class="divider"></div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>서울 용산구 한남동 618-1 대사관로34가길 2-8 1층</span>
+          <span>서울특별시 강남구 논현동 56 학동로 2길</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          <a class="nav-link" href="https://maps.google.com/?q=Seoul+Yongsan+District+Daesagwan-ro+34ga-gil+2-8+1F" target="_blank" rel="noopener">Seoul, Yongsan District, Daesagwan-ro 34ga-gil, 2-8 1F</a>
+          <span class="nav-addr">56 Hakdong-ro 2-gil, Gangnam District, Seoul</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
-          <span>0507-1420-8833</span>
+          <span>+82 50-71317-9685</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span class="note-text">目前无需提前预约，高峰期需等位。</span>
+          <span class="note-text">到访原店为汉南店，目前已搜索不到，替换为论岘店。无需提前预约，高峰期需等位。</span>
         </div>
       </div>
     </div>
@@ -576,24 +608,26 @@
         </div>
       </div>
       <div class="shop-info">
-        <div class="shop-name-kr">진미평양냉면</div>
+        <a class="shop-name-link" href="https://maps.google.com/?q=307+Hakdong-ro,+Gangnam+District,+Seoul" target="_blank" rel="noopener">
+          <div class="shop-name-kr">진미평양냉면</div>
+        </a>
         <div class="shop-name-en">Jinmi 平壤冷面</div>
         <div class="divider"></div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>서울 강남구 학동로 305-3 논현동 115-10</span>
+          <span>서울특별시 강남구 학동로 307</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          <a class="nav-link" href="https://maps.google.com/?q=305-3+Hakdong-ro,+Gangnam+District,+Seoul" target="_blank" rel="noopener">305-3 Hakdong-ro, Gangnam District, Seoul</a>
-        </div>
-        <div class="info-row">
-          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>11:00 – 21:30　（21:10 last order）</span>
+          <span class="nav-addr">307 Hakdong-ro, Gangnam District, Seoul</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
-          <span>02-515-3469</span>
+          <span>+82 2-515-3469</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>11:00 – 21:30　（21:10 最后点单）</span>
         </div>
       </div>
     </div>
@@ -604,24 +638,26 @@
   <article class="card text-only">
     <div class="card-inner">
       <div class="shop-info">
-        <div class="shop-name-kr">아웃백스테이크하우스 강남점</div>
+        <a class="shop-name-link" href="https://maps.google.com/?q=Seoul,+Gangnam+District,+Gangnam-daero,+502" target="_blank" rel="noopener">
+          <div class="shop-name-kr">아웃백스테이크하우스 강남점</div>
+        </a>
         <div class="shop-name-en">Outback Steakhouse 江南店</div>
         <div class="divider"></div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>서울 강남구 강남대로 502 논현동 165 서희빌딩 2층</span>
+          <span>서울특별시 강남구 강남대로 502 서희빌딩 2층</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          <a class="nav-link" href="https://maps.google.com/?q=Seoul+502+Gangnam-daero+Nonhyeon-dong+Gangnam-gu+2F" target="_blank" rel="noopener">Seoul, 502 Gangnam-daero, Nonhyeon-dong, Gangnam-gu, 2F</a>
-        </div>
-        <div class="info-row">
-          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>11:00 – 22:00　（21:00 last order）</span>
+          <span class="nav-addr">Seoul, Gangnam District, Gangnam-daero, 502 서희빌딩 2층</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
-          <span>+82 507-305-4791</span>
+          <span>+82 2-515-4791</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>11:00 – 22:00　（21:00 最后点单）</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -644,21 +680,27 @@
             <img src="201025.jpg" alt="자연석돌구이" class="active" />
           </div>
           <div class="photo-note">
-            <span class="note-who">酷</span>
+            <span class="note-who">胜澈</span>
             你叫什么名字 烤肉的技术 是艺术啊
           </div>
         </div>
       </div>
       <div class="shop-info">
-        <div class="shop-name-kr">자연석돌구이</div>
+        <a class="shop-name-link" href="https://maps.google.com/?q=97-18+Nonhyeon-dong,+Gangnam+District,+Seoul,+1F" target="_blank" rel="noopener">
+          <div class="shop-name-kr">자연석돌구이</div>
+        </a>
         <div class="divider"></div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>서울 강남구 언주로148길 9 (논현동 97-18)</span>
+          <span>서울특별시 강남구 언주로148길 9 (논현동 97-18)</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          <a class="nav-link" href="https://maps.google.com/?q=Seoul+97-18+Nonhyeon-dong+Gangnam-gu+1F" target="_blank" rel="noopener">Seoul, 97-18 Nonhyeon-dong, Gangnam-gu, 1F</a>
+          <span class="nav-addr">97-18 Nonhyeon-dong, Gangnam District, Seoul, 1F</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
+          <span>+82 2-548-9494</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -668,7 +710,7 @@
     </div>
   </article>
 
-  <!-- ══ CARD 9 — 새마을식당 ══ -->
+  <!-- ══ CARD 9 — 새마을식당 건대점 ══ -->
 
   <article class="card">
     <div class="card-inner">
@@ -683,26 +725,32 @@
             <div class="tap-hint">点击换图</div>
           </div>
           <div class="photo-note">
-            <span class="note-who">酷</span>
+            <span class="note-who">胜澈</span>
             净汉尼给买的 给我烤好的美味肉肉
           </div>
         </div>
       </div>
       <div class="shop-info">
-        <div class="shop-name-kr">새마을식당 삼성코엑스점</div>
-        <div class="shop-name-en">newmaul饭店 三成 coex店</div>
+        <a class="shop-name-link" href="https://maps.google.com/?q=Seoul,+Gwangjin+District,+Dongil-ro+22-gil,+69+1F" target="_blank" rel="noopener">
+          <div class="shop-name-kr">새마을식당 건대점</div>
+        </a>
+        <div class="shop-name-en">Saemaeul Restaurant 建大店</div>
         <div class="divider"></div>
         <div class="info-row">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>서울 강남구 삼성로104길 23 성지빌딩</span>
+          <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <span class="nav-addr">Seoul, Gwangjin District, Dongil-ro 22-gil, 69 1F</span>
         </div>
         <div class="info-row">
-          <svg class="icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          <a class="nav-link" href="https://maps.google.com/?q=Seoul+Gangnam-gu+Samseong-ro+104-gil+23+1F" target="_blank" rel="noopener">Seoul, Gangnam-gu, Samseong-ro 104-gil, 23, 1F</a>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z"/></svg>
+          <span>+82 2-468-0410</span>
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>24小时营业</span>
+          <span>11:00 – 06:00</span>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="note-text">到访原店论岘洞店已歇业，替换为建大店。</span>
         </div>
       </div>
     </div>
