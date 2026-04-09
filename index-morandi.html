@@ -406,6 +406,24 @@
       font-size: 0.65rem;
       color: var(--text-muted);
     }
+ 
+.skin-switch {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.2rem;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px var(--shadow-card);
+  transition: opacity 0.2s;
+}
+.skin-switch:hover { opacity: 0.6; }
+    
   </style>
 
 </head>
@@ -799,6 +817,8 @@
     imgs[(cur + 1) % imgs.length].classList.add('active');
   }
 </script>
+
+  <a class="skin-switch" href="index.html">切换皮肤</a>
 
 </body>
 </html>
